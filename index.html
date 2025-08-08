@@ -239,7 +239,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const menuItems = [
-                // Right Column from Image
+                // (قائمة المنتجات كما هي بدون تغيير)
                 { name: 'كيلو سمسمية', price: 160 },
                 { name: 'كيلو حمصية', price: 160 },
                 { name: 'كيلو فولية', price: 160 },
@@ -249,7 +249,7 @@
                 { name: 'كيلو جوزهند', details: 'قمر الدين/شيكولاته', price: 240 },
                 { name: 'كيلو جوزهند مكسرات', price: 225 },
                 { name: 'كيلو مربي جوزهند', price: 220 },
-                { name: 'كيلو جوزهند مكسرات فاخر', price: 300 }, // Differentiated the duplicate name
+                { name: 'كيلو جوزهند مكسرات فاخر', price: 300 },
                 { name: 'كيلو نوجا بالفول', price: 170 },
                 { name: 'كيلو نوجا فول', details: 'قمر الدين/شيكولاته', price: 180 },
                 { name: 'كيلو نوجا بندق', price: 300 },
@@ -260,7 +260,6 @@
                 { name: 'علبة لديده وسط', price: 35 },
                 { name: 'علبة لديده كبير', price: 45 },
                 { name: 'كيلو نوجا فسدق', price: 280 },
-                // Left Column from Image
                 { name: 'كيلو ملبن', details: 'سادة-جيلي', price: 80 },
                 { name: 'كيلو ملبن', details: 'فول-سمسم-زبيب-دومية', price: 100 },
                 { name: 'كيلو ملبن مكسرات', details: 'بندق-فسدق-لوز-عين جمل', price: 180 },
@@ -286,7 +285,10 @@
             const menuGrid = document.getElementById('menu-grid');
             const searchInput = document.getElementById('search-input');
             const notFoundMessage = document.getElementById('not-found');
-            const whatsappNumber = '201092992223';
+            
+            // ---  تم التعديل هنا ---
+            // 1. تم استبدال رقم الواتساب باسم مستخدم الماسنجر
+            const messengerUsername = 'goma1sweet';
 
             function renderMenu(items) {
                 menuGrid.innerHTML = '';
@@ -296,14 +298,17 @@
                     notFoundMessage.style.display = 'none';
                 }
               
-                items.forEach((item, index) => {
-                    const whatsappMessage = encodeURIComponent(`أرغب في طلب: ${item.name} ${item.details || ''}`);
-                    const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+                // ---  تم التعديل هنا ---
+                // 2. تم إنشاء رابط الماسنجر الثابت
+                const messengerLink = `http://m.me/${messengerUsername}`;
 
+                items.forEach((item, index) => {
                     const itemElement = document.createElement('div');
                     itemElement.className = 'menu-item';
                     itemElement.style.animationDelay = `${index * 0.05}s`;
                     
+                    // ---  تم التعديل هنا ---
+                    // 3. تم وضع رابط الماسنجر في زر "اطلب الآن"
                     itemElement.innerHTML = `
                         <div class="item-content">
                             <div>
@@ -312,7 +317,7 @@
                             </div>
                             <div class="item-footer">
                                 <p class="price">${item.price} <span>جم</span></p>
-                                <a href="${whatsappLink}" target="_blank" class="order-btn">اطلب الآن</a>
+                                <a href="${messengerLink}" target="_blank" class="order-btn">اطلب الآن</a>
                             </div>
                         </div>
                     `;
